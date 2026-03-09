@@ -27,7 +27,8 @@ const AnalysisReport = () => {
                 if (response.data.success) {
                     setReportData(response.data.data);
                 } else {
-                    setError(response.data.error || 'Failed to analyze listing.');
+                    const errorMsg = response.data.details ? `${response.data.error}: ${response.data.details}` : (response.data.error || 'Failed to analyze listing.');
+                    setError(errorMsg);
                 }
             } catch (err) {
                 setError('Failed to connect to the analysis engine. Please try again later.');
