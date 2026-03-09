@@ -79,8 +79,8 @@ const AnalysisReport = () => {
             <header className="report-header">
                 <div className="report-title-area">
                     <h1>Listing Analysis Report</h1>
-                    <a href={listingInfo.url} target="_blank" rel="noreferrer" className="listing-url">
-                        {listingInfo.title || 'View Listing on Airbnb'}
+                    <a href={listingInfo?.url || '#'} target="_blank" rel="noreferrer" className="listing-url">
+                        {listingInfo?.title || 'View Listing on Airbnb'}
                     </a>
                 </div>
 
