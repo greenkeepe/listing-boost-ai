@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: listing-boost-ai
+    env: node
+    plan: free
+    buildCommand: npm run install:all && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: "" # Fill in Render dashboard or use a Render PostgreSQL DB
+      - key: OPENAI_API_KEY
+        value: "" # Fill in Render dashboard
+      - key: STRIPE_SECRET_KEY
+        value: "" # Fill in Render dashboard
+      - key: STRIPE_WEBHOOK_SECRET
+        value: "" # Fill in Render dashboard
+      - key: JWT_SECRET
+        generateValue: true
