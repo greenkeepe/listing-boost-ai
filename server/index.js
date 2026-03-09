@@ -21,10 +21,20 @@ app.use('/api/payment/webhook', paymentRouter);
 app.use(cors());
 app.use(express.json());
 
-// Database connection
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-});
+// Database connection (Fault tolerant for Vercel if URL is missing)
+let pool;
+try {
+    if (process.env.DATABASE_URL) {
+        pool = new Pool({
+            connectionString: process.env.DATABASE_URL,
+            ssl: { rejectUnauthorized: false } // Required for many hosted DBs like Neon/Supabase
+        });
+    } else {
+        console.warn("DATABASE_URL is not set. Database features will not work.");
+    }
+} catch (e) {
+    console.error("Failed to initialize database pool", e);
+}
 
 // Routes
 app.use('/api/auth', authRouter);
