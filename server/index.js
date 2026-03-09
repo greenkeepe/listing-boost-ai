@@ -36,14 +36,16 @@ app.get('/api', (req, res) => {
     res.send('ListingBoost AI API is running');
 });
 
-// Serve frontend in production
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, '../client/dist')));
+// Serve frontend in production (Only if NOT on Vercel)
+if (!process.env.VERCEL) {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    });
+}
 
 // Start server if not running on Vercel
 if (!process.env.VERCEL) {
