@@ -2,12 +2,25 @@
     "name": "listing-boost-ai",
     "version": "1.0.0",
     "description": "Airbnb listing analyzer and optimizer",
+    "type": "module",
     "scripts": {
         "install:all": "npm --prefix server install && npm --prefix client install",
-        "build": "npm --prefix client run build",
+        "build": "npm --prefix client install && npm --prefix client run build",
         "start": "node server/index.js",
         "dev:server": "npm --prefix server run dev",
         "dev:client": "npm --prefix client run dev"
+    },
+    "dependencies": {
+        "axios": "^1.13.6",
+        "bcrypt": "^6.0.0",
+        "cheerio": "^1.2.0",
+        "cors": "^2.8.6",
+        "dotenv": "^17.3.1",
+        "express": "^5.2.1",
+        "jsonwebtoken": "^9.0.3",
+        "openai": "^6.27.0",
+        "pg": "^8.20.0",
+        "stripe": "^20.4.1"
     },
     "engines": {
         "node": ">=18.0.0"
