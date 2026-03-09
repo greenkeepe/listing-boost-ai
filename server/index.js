@@ -45,7 +45,11 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
-// Start server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// Start server if not running on Vercel
+if (!process.env.VERCEL) {
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+}
+
+export default app;
