@@ -9,10 +9,10 @@ const LandingPage = () => {
 
     const handleAnalyze = (e) => {
         e.preventDefault();
-        if (url.includes('airbnb.com')) {
+        if (url.includes('airbnb.')) {
             navigate(`/analyze?url=${encodeURIComponent(url)}`);
         } else {
-            alert("Please enter a valid Airbnb URL");
+            alert("Please enter a valid Airbnb URL (e.g. airbnb.com or airbnb.it)");
         }
     };
 

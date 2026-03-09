@@ -10,7 +10,7 @@ import * as cheerio from 'cheerio'; // I'll need to install this
 export const scrapeListing = async (url) => {
     try {
         // Basic validation
-        if (!url.includes('airbnb.com/rooms/')) {
+        if (!url.includes('airbnb.')) {
             throw new Error('Invalid Airbnb URL');
         }
 
