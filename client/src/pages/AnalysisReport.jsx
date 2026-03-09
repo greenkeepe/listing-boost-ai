@@ -22,8 +22,8 @@ const AnalysisReport = () => {
         const fetchAnalysis = async () => {
             try {
                 setLoading(true);
-                // Assuming backend runs on 5000 in dev
-                const response = await axios.post('http://localhost:5000/api/analyze', { url });
+                const apiUrl = import.meta.env.VITE_API_URL || '';
+                const response = await axios.post(`${apiUrl}/api/analyze`, { url });
                 if (response.data.success) {
                     setReportData(response.data.data);
                 } else {

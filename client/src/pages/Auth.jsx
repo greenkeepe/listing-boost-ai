@@ -19,7 +19,8 @@ const Auth = () => {
 
         try {
             const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-            const response = await axios.post(`http://localhost:5000${endpoint}`, { email, password });
+            const apiUrl = import.meta.env.VITE_API_URL || '';
+            const response = await axios.post(`${apiUrl}${endpoint}`, { email, password });
 
             if (response.data.success) {
                 localStorage.setItem('token', response.data.token);
